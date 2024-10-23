@@ -7,7 +7,7 @@ double f(const double x) {
     return sin(x);
 }
 vector<pair<double, double> > iteration() {
-    constexpr int N = 10;
+    constexpr int N = 11;
     constexpr double a = 0, b = 1;
     constexpr double u_a = 1, u_b = 1;
     constexpr double h = (b - a) / (N - 1);
@@ -23,16 +23,21 @@ vector<pair<double, double> > iteration() {
     }
     m[N - 1][N - 1] = u_b;
     SquareMatrix<double>A(m);
-    const SquareMatrix<double>A_inv = A.reverse();
-
+    A.show();
+    SquareMatrix<double>A_inv = A.reverse();
+    A_inv.show();
     vector<vector<double> >u(2, vector<double>(N, 0));
-    for(int i = 0; i < N; i++)u[0][i] = a + h * i;
+    //for(int i = 0; i < N; i++)u[0][i] = a + h * i;
+    for(int i = 0; i < N; i++)u[0][i] = (a + h * i - a) * (a + h * i - b) + 1.0;
+    //u[0][0] = 1;
 
     int j = 0;
     vector<double> R(N, 0);
 
     int t = 0;
     double absolute = 1, relative = 1;
+
+    print(u[j]);
     do
     {
         cout << t++ << "\n";
@@ -41,8 +46,12 @@ vector<pair<double, double> > iteration() {
             const double x = a + h * i;
             R[i] = f(x) - u[j][i] * u[j][i] * u[j][i];
         }
+        cout << "R = \n";
+        print(R);
         u[1 - j] = A_inv * R;
         j = 1 - j;
+
+        print(u[j]);
 
         absolute = dist(u[j], u[1 - j], h);
         relative = absolute / norm(u[j], h);
@@ -51,6 +60,11 @@ vector<pair<double, double> > iteration() {
     vector<pair<double, double> >xy(N);
     for(int i = 0; i < N; i++)
         xy[i] = make_pair(a + h * i, u[j][i]);
+
+    cout << "sin = \n";
+    for(int i = 0; i < N; i++)cout << sin(h * i) << " ";
+    cout << "\n";
+
     return xy;
 }
 double dist(const vector<double>&v1, const vector<double>&v2, const double h) {
@@ -76,6 +90,14 @@ void print(const vector<pair<double, double> >&xy)
         cout << "{ " << fst << ", " << snd << " }, ";
     }
     cout << "} \n";
+}
+void print(const vector<double>&v)
+{
+    for(auto val: v)
+    {
+        cout << val << " ";
+    }
+    cout << "\n";
 }
 pair<double, double> difference(const vector<pair<double, double> >&xy, const vector<pair<double, double> >&correct)
 {
