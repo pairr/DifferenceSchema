@@ -8,8 +8,12 @@
 #endif //CALCULATE_H
 #include "../ReverseMatrix/MatrixLib/MatrixLib.h"
 #include <cmath>
+using std::pair;
+using std::make_pair;
 
 double f(double x);
-void start() ;
-void iteration(SquareMatrix<double>A, const vector<double>u0, const vector<double>R, double h, double eps);
+vector<pair<double, double> > iteration();
 double dist(const vector<double>&v1, const vector<double>&v2, double h);
+double norm(const vector<double>&v, double h);
+void print(const vector<pair<double, double> >&xy);
+pair<double, double> difference(const vector<pair<double, double> >&xy, const vector<pair<double, double> >&correct);
