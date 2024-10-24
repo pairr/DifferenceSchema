@@ -9,6 +9,11 @@ int main()
 
     vector<pair<double, double> >correct;
 
+    char c;
+    cout << "Continue? [y/n] ";
+    cin >> c;
+    if(c == 'n')return 0;
+
     double a, b;
     while(cin >> a >> b)
     {
