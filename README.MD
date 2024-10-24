@@ -11,7 +11,7 @@ The Finite Difference Method approximates derivatives by replacing them with dif
 1. **Discretization of the Domain**:
     - The domain of the differential equation is divided into discrete points.
     - For example, consider a 1D domain $x \in [a, b]$ with $N$ grid points. The step size $h$ is:<br>
-      $$\begin{equation}h = \frac{b - a}{N-1}\end{equation}$$
+      $$h = \frac{b - a}{N-1}$$
 
 2. **Finite Difference Approximation**:
     - The derivatives in the differential equation are approximated using finite differences.
