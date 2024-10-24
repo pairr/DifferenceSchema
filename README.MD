@@ -114,7 +114,7 @@ A =
 $$
 
 $$
-\mathbf{b} =
+\mathbf{b_0} =
 \begin{pmatrix}
 0 \\
 \vdots \\
