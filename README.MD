@@ -28,7 +28,7 @@ The Finite Difference Method approximates derivatives by replacing them with dif
 ### Matrix Representation
 
 For a second-order differential equation like equation:<br>
-$$\frac{d^2 u}{dx^2} + u^3(x) = f(x), \quad u(a) = u_a, \quad u(b) = u_b$$
+$$\frac{d^2 u}{dx^2} + u^3(x) = f(x), \quad u(a) = u_a, \quad u(b) = u_b$$ <br>
 the finite difference method leads to the following system of equations:
 
 $$A \mathbf{u} = \mathbf{b}$$
@@ -98,8 +98,8 @@ For the 1D equation:<br>
 $$\frac{d^2 u}{dx^2} = \sin(x) - u^3(x), \quad u(0) = 0, \quad u(1) = 1$$
 
 The discretized form at interior points $x_0, x_1, x_2, \dots, x_{N-1}$ leads to the matrix equation:<br>
-$$A \mathbf{u} = \mathbf{b}$$
-where:
+$$A \mathbf{u} = \mathbf{b}$$ <br>
+where:<br>
 $$
 A =
 \begin{pmatrix}
