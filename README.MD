@@ -110,8 +110,10 @@ A =
 \vdots & \vdots & \vdots & \ddots & \ddots \\
 0 & 0 & 0 & -1 & 2 & 1 \\
 0 & 0 & 0 & 0 & \cdots & 1
-\end{pmatrix},
+\end{pmatrix}
+$$
 
+$$
 \mathbf{b} =
 \begin{pmatrix}
 0 \\
@@ -120,6 +122,6 @@ A =
 \vdots \\
 1
 \end{pmatrix}
-
 $$
+
 As an initial approximation $\mathbf{u}^{(0)}$ we take values of function $x$.
