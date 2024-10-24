@@ -6,7 +6,7 @@
 #define CALCULATE_H
 
 #endif //CALCULATE_H
-#include "../ReverseMatrix/MatrixLib/MatrixLib.h"
+#include "MatrixLib/MatrixLib.h"
 #include <cmath>
 using std::pair;
 using std::make_pair;

@@ -7,29 +7,30 @@ double f(const double x) {
     return sin(x);
 }
 vector<pair<double, double> > iteration() {
-    constexpr int N = 11;
+    constexpr int N = 100;
     constexpr double a = 0, b = 1;
-    constexpr double u_a = 1, u_b = 1;
+    constexpr double u_a = 0, u_b = 1;
     constexpr double h = (b - a) / (N - 1);
-    constexpr double eps = 0.001;
+    constexpr double eps = 1e-6;
     constexpr int IT_LIMIT = 1000;
 
     vector<vector<double> >m(N, vector<double>(N, 0));
-    m[0][0] = u_a;
+    m[0][0] = 1;
     for(int i = 1; i < N - 1; i++) {
         m[i][i - 1] = -1/(h * h);
         m[i][i] = 2 / (h * h);
         m[i][i + 1] = -1 / (h * h);
     }
-    m[N - 1][N - 1] = u_b;
+    m[N - 1][N - 1] = 1;
+
     SquareMatrix<double>A(m);
     A.show();
+
     SquareMatrix<double>A_inv = A.reverse();
     A_inv.show();
+
     vector<vector<double> >u(2, vector<double>(N, 0));
-    //for(int i = 0; i < N; i++)u[0][i] = a + h * i;
-    for(int i = 0; i < N; i++)u[0][i] = (a + h * i - a) * (a + h * i - b) + 1.0;
-    //u[0][0] = 1;
+    for(int i = 0; i < N; i++)u[0][i] = a + h * i;
 
     int j = 0;
     vector<double> R(N, 0);
@@ -40,14 +41,15 @@ vector<pair<double, double> > iteration() {
     print(u[j]);
     do
     {
-        cout << t++ << "\n";
-        for(int i = 0; i < N; i++)
+        cout << "t = " << t++ << "\n";
+        R[0] = u_a;;
+        for(int i = 1; i < N - 1; i++)
         {
             const double x = a + h * i;
             R[i] = f(x) - u[j][i] * u[j][i] * u[j][i];
         }
-        cout << "R = \n";
-        print(R);
+        R[N - 1] = u_b;
+
         u[1 - j] = A_inv * R;
         j = 1 - j;
 
@@ -60,10 +62,6 @@ vector<pair<double, double> > iteration() {
     vector<pair<double, double> >xy(N);
     for(int i = 0; i < N; i++)
         xy[i] = make_pair(a + h * i, u[j][i]);
-
-    cout << "sin = \n";
-    for(int i = 0; i < N; i++)cout << sin(h * i) << " ";
-    cout << "\n";
 
     return xy;
 }
