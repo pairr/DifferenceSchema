@@ -112,8 +112,6 @@ A =
 0 & 0 & 0 & 0 & \cdots & 1
 \end{pmatrix},
 
-\quad
-
 \mathbf{b} =
 \begin{pmatrix}
 0 \\
