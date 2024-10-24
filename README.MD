@@ -11,16 +11,12 @@ The Finite Difference Method approximates derivatives by replacing them with dif
 1. **Discretization of the Domain**:
     - The domain of the differential equation is divided into discrete points.
     - For example, consider a 1D domain $x \in [a, b]$ with $N$ grid points. The step size $h$ is:<br>
-      $$
-      h = \frac{b - a}{N-1}
-      $$
+      $$h = \frac{b - a}{N-1}$$
 
 2. **Finite Difference Approximation**:
     - The derivatives in the differential equation are approximated using finite differences.
-    - For example, the second-order derivative $\frac{d^2u}{dx^2}$ at grid point $x_i$ can be approximated as:
-      $$
-      \frac{d^2u}{dx^2} \approx \frac{u_{i+1} - 2u_i + u_{i-1}}{h^2}
-      $$
+    - For example, the second-order derivative $\frac{d^2u}{dx^2}$ at grid point $x_i$ can be approximated as:<br>
+      $$\frac{d^2u}{dx^2} \approx \frac{u_{i+1} - 2u_i + u_{i-1}}{h^2}$$
 
 3. **Matrix Representation**:
     - The discretized equation for all grid points results in a system of linear equations.
@@ -31,15 +27,11 @@ The Finite Difference Method approximates derivatives by replacing them with dif
 
 ### Matrix Representation
 
-For a second-order differential equation like equation:
-$$
-\frac{d^2 u}{dx^2} + u^3(x) = f(x), \quad u(a) = u_a, \quad u(b) = u_b
-$$
+For a second-order differential equation like equation:<br>
+$$\frac{d^2 u}{dx^2} + u^3(x) = f(x), \quad u(a) = u_a, \quad u(b) = u_b$$
 the finite difference method leads to the following system of equations:
 
-$$
-A \mathbf{u} = \mathbf{b}
-$$
+$$A \mathbf{u} = \mathbf{b}$$
 
 Where $A$ is a tridiagonal matrix, representing the discretized second derivative:
 
@@ -73,48 +65,40 @@ $$
 The Finite Difference Method typically involves an iterative approach to solve the system of equations for increasing accuracy. Here’s how the process works:
 
 1. **Initial Guess**:
-   Start with an initial guess for the solution vector $ \mathbf{u}^{(0)} $. This can be a zero vector or any reasonable approximation for the problem at hand.
+   Start with an initial guess for the solution vector $\mathbf{u}^{(0)}$. This can be a zero vector or any reasonable approximation for the problem at hand.
 
-2. **Calculate $ \mathbf{b}^{(0)} $**:
-   Using the initial guess $ \mathbf{u}^{(0)} $, calculate the corresponding right-hand side vector $ \mathbf{b}^{(0)} $.
+2. **Calculate $\mathbf{b}^{(0)}$**:
+   Using the initial guess $\mathbf{u}^{(0)}$, calculate the corresponding right-hand side vector $\mathbf{b}^{(0)}$.
 
 3. **Solve for the Next Approximation**:
-   Using matrix inversion, solve for the next approximation $ \mathbf{u}^{(1)} $ by:
-   $$
-   \mathbf{u}^{(1)} = A^{-1} \mathbf{b}^{(0)}
-   $$
+   Using matrix inversion, solve for the next approximation $\mathbf{u}^{(1)}$ by:
+   $$\mathbf{u}^{(1)} = A^{-1} \mathbf{b}^{(0)}$$
 
-4. **Recalculate $ \mathbf{b}^{(1)} $**:
-   With the updated approximation $ \mathbf{u}^{(1)} $, recalculate the right-hand side vector $ \mathbf{b}^{(1)} $.
+4. **Recalculate $\mathbf{b}^{(1)}$**:
+   With the updated approximation $\mathbf{u}^{(1)}$, recalculate the right-hand side vector $\mathbf{b}^{(1)}$.
 
 5. **Iterate**:
-   Repeat the process, updating $ \mathbf{u}^{(n+1)} $ and recalculating $ \mathbf{b}^{(n+1)} $ at each step. The solution improves with each iteration.
+   Repeat the process, updating $\mathbf{u}^{(n+1)}$ and recalculating $\mathbf{b}^{(n+1)}$ at each step. The solution improves with each iteration.
 
 6. **Convergence Check**:
-   Continue iterating until the change in the solution between two successive iterations, $ ||\mathbf{u}^{(n+1)} - \mathbf{u}^{(n)}|| $, is smaller than a predefined tolerance, indicating that the solution has converged.
+   Continue iterating until the change in the solution between two successive iterations, $||\mathbf{u}^{(n+1)} - \mathbf{u}^{(n)}||$, is smaller than a predefined tolerance, indicating that the solution has converged.
 
 7. **Stopping Criterion**:
-   Once the change in the solution is negligible ( by absolute or relative value) or number of iterations has exceeded predefined limit, stop the iterations. The final $ \mathbf{u}^{(n+1)} $ is the approximate solution to the original boundary value problem.
+   Once the change in the solution is negligible ( by absolute or relative value) or number of iterations has exceeded predefined limit, stop the iterations. The final $\mathbf{u}^{(n+1)}$ is the approximate solution to the original boundary value problem.
 
 This iterative process refines the approximation with each step, improving the accuracy of the solution until the desired precision is achieved.
 
 
 
-$$
-\mathbf{u} = A^{-1} \mathbf{b}
-$$
+$$\mathbf{u} = A^{-1} \mathbf{b}$$
 
 ### Example: 
 
-For the 1D equation:
-$$
-\frac{d^2 u}{dx^2} = \sin(x) - u^3(x), \quad u(0) = 0, \quad u(1) = 1
-$$
+For the 1D equation:<br>
+$$\frac{d^2 u}{dx^2} = \sin(x) - u^3(x), \quad u(0) = 0, \quad u(1) = 1$$
 
-The discretized form at interior points $x_0, x_1, x_2, \dots, x_{N-1}$ leads to the matrix equation:
-$$
-A \mathbf{u} = \mathbf{b}
-$$
+The discretized form at interior points $x_0, x_1, x_2, \dots, x_{N-1}$ leads to the matrix equation:<br>
+$$A \mathbf{u} = \mathbf{b}$$
 where:
 $$
 A =
@@ -136,4 +120,4 @@ A =
 1
 \end{pmatrix}
 $$
-As an initial approximation $ \mathbf{u}^{(0)} $ we take values of function $x$.
+As an initial approximation $\mathbf{u}^{(0)}$ we take values of function $x$.
