@@ -5,10 +5,10 @@ int main()
 {
     const vector<pair<double, double>> xy = iteration();
 
-    print(xy);
+    printData(xy);
 
     vector<pair<double, double> >correct;
-
+    return 0;
     char c;
     cout << "Continue? [y/n] ";
     cin >> c;

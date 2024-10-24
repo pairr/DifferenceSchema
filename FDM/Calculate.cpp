@@ -59,6 +59,7 @@ vector<pair<double, double> > iteration() {
         relative = absolute / norm(u[j], h);
     }while(absolute > eps && relative > eps && t < IT_LIMIT);
 
+    cout << "abs = " << absolute << " " << "rel = " << relative << "\n";
     vector<pair<double, double> >xy(N);
     for(int i = 0; i < N; i++)
         xy[i] = make_pair(a + h * i, u[j][i]);
@@ -80,12 +81,20 @@ double norm(const vector<double>&v, const double h)
     }
     return ans;
 }
-void print(const vector<pair<double, double> >&xy)
+void printData(const vector<pair<double, double> >&xy)
 {
     cout << "{ ";
     for(const auto & [fst, snd] : xy)
     {
         cout << "{ " << fst << ", " << snd << " }, ";
+    }
+    cout << "} \n";
+}
+void print(const vector<pair<double, double> >&xy)
+{
+    for(const auto & [fst, snd] : xy)
+    {
+        cout<< fst << " " << snd << "\n";
     }
     cout << "} \n";
 }
@@ -104,8 +113,9 @@ pair<double, double> difference(const vector<pair<double, double> >&xy, const ve
     for(int i = 0; i < xy.size(); i++)
     {
         const double dif = fabs(xy[i].second - correct[i].second);
+        const double r = fabs(correct[i].second);
         if(abs < dif)abs = dif;
-        if(rel < dif / correct[i].second)rel = dif / correct[i].second;
+        if(r != 0 && rel < dif / r)rel = dif / r;
     }
     return make_pair(abs, rel);
 }
