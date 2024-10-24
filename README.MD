@@ -100,6 +100,7 @@ $$\frac{d^2 u}{dx^2} = \sin(x) - u^3(x), \quad u(0) = 0, \quad u(1) = 1$$
 The discretized form at interior points $x_0, x_1, x_2, \dots, x_{N-1}$ leads to the matrix equation:<br>
 $$A \mathbf{u} = \mathbf{b}$$ <br>
 where:<br>
+
 $$
 A =
 \begin{pmatrix}
@@ -110,7 +111,9 @@ A =
 0 & 0 & 0 & -1 & 2 & 1 \\
 0 & 0 & 0 & 0 & \cdots & 1
 \end{pmatrix},
+
 \quad
+
 \mathbf{b} =
 \begin{pmatrix}
 0 \\
@@ -119,5 +122,6 @@ A =
 \vdots \\
 1
 \end{pmatrix}
+
 $$
 As an initial approximation $\mathbf{u}^{(0)}$ we take values of function $x$.
