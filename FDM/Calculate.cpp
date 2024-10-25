@@ -11,7 +11,7 @@ vector<pair<double, double> > iteration() {
     constexpr double a = 0, b = 1;
     constexpr double u_a = 0, u_b = 1;
     constexpr double h = (b - a) / (N - 1);
-    constexpr double eps = 1e-6;
+    constexpr double eps = 1e-10;
     constexpr int IT_LIMIT = 1000;
 
     vector<vector<double> >m(N, vector<double>(N, 0));

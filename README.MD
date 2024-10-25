@@ -125,3 +125,15 @@ $$
 $$
 
 As an initial approximation $\mathbf{u}^{(0)}$ we take values of function $x$.
+
+## Comparison of Solutions
+
+This section shows a comparison of solutions obtained through the **Finite Difference Method** and **Wolfram Alpha** for the given problem. The graphs below illustrate the solutions obtained using both approaches.
+
+### Solution using Finite Difference Method
+![Finite Difference Solution](/assets/images/FDM.png)
+
+### Solution using Wolfram Alpha
+![Wolfram Solution](/assets/images/Wolfram.png)
+
+Both graphs demonstrate the accuracy and convergence of the solutions obtained by the finite difference method relative to the benchmark solution provided by Wolfram Alpha.

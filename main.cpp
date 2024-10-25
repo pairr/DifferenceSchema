@@ -8,7 +8,7 @@ int main()
     printData(xy);
 
     vector<pair<double, double> >correct;
-    return 0;
+
     char c;
     cout << "Continue? [y/n] ";
     cin >> c;

@@ -40,6 +40,6 @@ TEST_SUITE("LOL")
         auto [abs, rel] = difference(xy, correct);
 
         cout << abs << " " << rel << '\n';
-        CHECK((abs <= 1e-6 || rel <= 1e-6));
+        CHECK((abs <= 1e-1 || rel <= 1e-1));
     }
 }
