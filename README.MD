@@ -39,10 +39,10 @@ $$
 A =
 \begin{pmatrix}
 1 & 0 & 0 & 0 & \cdots & 0 \\
--1 & 2 & -1 & 0 & \cdots & 0 \\
-0 & -1 & 2 & 1 & \cdots & 0 \\
+-1 / h^2 & 2 / h^2 & -1 / h^2 & 0 & \cdots & 0 \\
+0 & -1 / h^2 & 2 / h^2 & 1 / h^2 & \cdots & 0 \\
 \vdots & \vdots & \vdots & \ddots & \ddots \\
-0 & 0 & 0 & -1 & 2 & 1 \\
+0 & 0 & 0 & -1 / h^2 & 2 / h^2 & 1 / h^2 \\
 0 & 0 & 0 & 0 & \cdots & 1
 \end{pmatrix}
 $$
@@ -105,10 +105,10 @@ $$
 A =
 \begin{pmatrix}
 1 & 0 & 0 & 0 & \cdots & 0 \\
--1 & 2 & -1 & 0 & \cdots & 0 \\
-0 & -1 & 2 & 1 & \cdots & 0 \\
+-1 / h^2 & 2 / h^2 & -1 / h^2 & 0 & \cdots & 0 \\
+0 & -1 / h^2 & 2 / h^2 & 1 / h^2 & \cdots & 0 \\
 \vdots & \vdots & \vdots & \ddots & \ddots \\
-0 & 0 & 0 & -1 & 2 & 1 \\
+0 & 0 & 0 & -1 / h^2 & 2 / h^2 & 1 / h^2 \\
 0 & 0 & 0 & 0 & \cdots & 1
 \end{pmatrix}
 $$
