@@ -81,7 +81,7 @@ The Finite Difference Method typically involves an iterative approach to solve t
    Repeat the process, updating $\mathbf{u}^{(n+1)}$ and recalculating $\mathbf{b}^{(n+1)}$ at each step. The solution improves with each iteration.
 
 6. **Convergence Check**:
-   Continue iterating until the change in the solution between two successive iterations, $||\mathbf{u}^{(n+1)} - \mathbf{u}^{(n)}||$, is smaller than a predefined tolerance, indicating that the solution has converged.
+   Continue iterating until the change in the solution between two successive iterations, $\lVert\mathbf{u}^{(n+1)} - \mathbf{u}^{(n)}\rVert$, is smaller than a predefined tolerance, indicating that the solution has converged.
 
 7. **Stopping Criterion**:
    Once the change in the solution is negligible ( by absolute or relative value) or number of iterations has exceeded predefined limit, stop the iterations. The final $\mathbf{u}^{(n+1)}$ is the approximate solution to the original boundary value problem.
