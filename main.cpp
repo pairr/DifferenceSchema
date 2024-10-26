@@ -1,9 +1,13 @@
 #include <iostream>
-#include "Calculate.h"
+#include "FDM.h"
 using std::cin;
+double f(double x)
+{
+    return sin(x);
+}
 int main()
 {
-    const vector<pair<double, double>> xy = iteration();
+    const vector<pair<double, double>> xy = FDM(f).solve();
 
     printData(xy);
 

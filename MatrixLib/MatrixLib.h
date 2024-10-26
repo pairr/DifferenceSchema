@@ -27,6 +27,7 @@ public:
     SquareMatrix(const SquareMatrix<T>& other):matrix(other.matrix), size(other.size){}
     explicit SquareMatrix(int s):matrix(vector<vector<T> >(s, vector<T>(s, 0))), size(s){}
 
+    void setMatrix(const vector<vector<T> >& m);
     SquareMatrix<T>reverse();
     vector<vector<T> >get_matrix();
     void make_identity();

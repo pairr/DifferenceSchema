@@ -5,6 +5,12 @@
 #define MATRIXLIB_HPP
 
 template<typename T>
+void SquareMatrix<T>::setMatrix(const vector<vector<T> >& m)
+{
+    matrix = m;
+    size = m.size();
+}
+template<typename T>
 void SquareMatrix<T>::transpose_rows(const int row1, const int row2) {
     for(int column = 0; column < size; column++) {
         swap(matrix[row1][column], matrix[row2][column]);

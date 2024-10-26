@@ -1,6 +1,6 @@
 project(FDM)
 
-add_library(FDM Calculate.cpp)
+add_library(FDM FDM.cpp)
 target_include_directories(FDM PUBLIC
         ${CMAKE_CURRENT_SOURCE_DIR}
 )

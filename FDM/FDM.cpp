@@ -1,34 +1,30 @@
 //
 // Created by stud-05 on 10/23/24.
 //
-#include "Calculate.h"
+#include "FDM.h"
 
-double f(const double x) {
-    return sin(x);
-}
-vector<pair<double, double> > iteration() {
-    constexpr int N = 100;
-    constexpr double a = 0, b = 1;
-    constexpr double u_a = 0, u_b = 1;
-    constexpr double h = (b - a) / (N - 1);
-    constexpr double eps = 1e-6;
-    constexpr int IT_LIMIT = 1000;
-
-    vector<vector<double> >m(N, vector<double>(N, 0)); // populating matrix A values to m
+vector<std::vector<double>> FDM::populateMatrix() const {
+    std::vector<std::vector<double>> m(N, std::vector<double>(N, 0));
     m[0][0] = 1;
-    for(int i = 1; i < N - 1; i++) {
-        m[i][i - 1] = -1/(h * h);
+    for (int i = 1; i < N - 1; i++) {
+        m[i][i - 1] = -1 / (h * h);
         m[i][i] = 2 / (h * h);
         m[i][i + 1] = -1 / (h * h);
     }
     m[N - 1][N - 1] = 1;
+    return m;
+}
+FDM::FDM(double (*source_func)(double)):A(populateMatrix()), A_inv(A.reverse()), f(source_func){}
 
-    SquareMatrix<double>A(m); // creating matrix A
+FDM::FDM(double (*source_func)(double), int num_steps, double start, double end, double boundary_start, double boundary_end, double tolerance):
+N(num_steps), a(start), b(end), u_a(boundary_start), u_b(boundary_end),
+eps(tolerance), A(populateMatrix()), A_inv(A.reverse()), f(source_func){}
+
+vector<pair<double, double> > FDM::solve(){
     cout << "Matrix A:" << "\n";
     A.show();
     cout <<"\n";
 
-    SquareMatrix<double>A_inv = A.reverse(); // creating A_inv
     cout << "Matrix A_inv:" << "\n";
     A_inv.show();
     cout <<"\n";
@@ -41,7 +37,7 @@ vector<pair<double, double> > iteration() {
     vector<double> R(N, 0); // R - RHS vector. Au = R
 
     int t = 0, j = 0;
-    double absolute = 1, relative = 1; // difference from previous solution
+    double absolute, relative; // difference from previous solution
 
     do
     {
