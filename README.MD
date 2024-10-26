@@ -52,11 +52,12 @@ The vector $\mathbf{u}$ represents the unknown values $u_0, u_1, u_2, \dots, u_{
 $$
 \mathbf{b} =
 \begin{pmatrix}
-f(x_0) - u_0^3\\
+u_a\\
 f(x_1) - u_1^3 \\
 f(x_2) - u_2^3 \\
 \vdots \\
-f(x_{N - 1}) - u_{N - 1}^3
+f(x_{N - 2}) - u_{N - 2}^3 \\
+u_b
 \end{pmatrix}
 $$
 
