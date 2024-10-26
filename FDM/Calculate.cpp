@@ -11,10 +11,10 @@ vector<pair<double, double> > iteration() {
     constexpr double a = 0, b = 1;
     constexpr double u_a = 0, u_b = 1;
     constexpr double h = (b - a) / (N - 1);
-    constexpr double eps = 1e-10;
+    constexpr double eps = 1e-6;
     constexpr int IT_LIMIT = 1000;
 
-    vector<vector<double> >m(N, vector<double>(N, 0));
+    vector<vector<double> >m(N, vector<double>(N, 0)); // populating matrix A values to m
     m[0][0] = 1;
     for(int i = 1; i < N - 1; i++) {
         m[i][i - 1] = -1/(h * h);
@@ -23,43 +23,60 @@ vector<pair<double, double> > iteration() {
     }
     m[N - 1][N - 1] = 1;
 
-    SquareMatrix<double>A(m);
+    SquareMatrix<double>A(m); // creating matrix A
+    cout << "Matrix A:" << "\n";
     A.show();
+    cout <<"\n";
 
-    SquareMatrix<double>A_inv = A.reverse();
+    SquareMatrix<double>A_inv = A.reverse(); // creating A_inv
+    cout << "Matrix A_inv:" << "\n";
     A_inv.show();
+    cout <<"\n";
 
-    vector<vector<double> >u(2, vector<double>(N, 0));
-    for(int i = 0; i < N; i++)u[0][i] = a + h * i;
+    vector<vector<double> >u(2, vector<double>(N, 0)); // u_0 and u_1 store 2 last solutions
+    for(int i = 0; i < N; i++)u[0][i] = a + h * i; // initial approximation
+    u[0][0] = u_a; // setting boundary values for initial approximation
+    u[0][N - 1] = u_b;
 
-    int j = 0;
-    vector<double> R(N, 0);
+    vector<double> R(N, 0); // R - RHS vector. Au = R
 
-    int t = 0;
-    double absolute = 1, relative = 1;
+    int t = 0, j = 0;
+    double absolute = 1, relative = 1; // difference from previous solution
 
-    print(u[j]);
     do
     {
-        cout << "t = " << t++ << "\n";
-        R[0] = u_a;;
-        for(int i = 1; i < N - 1; i++)
+        cout << "u" << t++ << ": " << "\n";
+        print(u[j]);
+
+        R[0] = u_a;
+        for(int i = 1; i < N - 1; i++) // calculating R based on previous solution u
         {
             const double x = a + h * i;
             R[i] = f(x) - u[j][i] * u[j][i] * u[j][i];
         }
         R[N - 1] = u_b;
 
-        u[1 - j] = A_inv * R;
-        j = 1 - j;
+        cout << "R:" << "\n";
+        print(R);
+        cout <<"\n";
 
-        print(u[j]);
+        u[1 - j] = A_inv * R; // calculating new solution u
+        u[1 - j][0] = u_a; // setting correct boundary values
+        u[1 - j][N - 1] = u_b;
+
+        j = 1 - j; // switching, so that new solution is old solution on next iteration
+                    // for example if u[0] was old solution and u[1] new one
+                    // after j = 1 - j, on the next iteration u[1] would be old solution
+                    // and new solution would get stored in u[0]
 
         absolute = dist(u[j], u[1 - j], h);
         relative = absolute / norm(u[j], h);
     }while(absolute > eps && relative > eps && t < IT_LIMIT);
 
-    cout << "abs = " << absolute << " " << "rel = " << relative << "\n";
+    cout << "u" << t++ << ": " << "\n";
+    print(u[j]);
+
+    cout << "abs from previous = " << absolute << " " << "rel form previous = " << relative << "\n";
     vector<pair<double, double> >xy(N);
     for(int i = 0; i < N; i++)
         xy[i] = make_pair(a + h * i, u[j][i]);
